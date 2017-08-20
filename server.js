@@ -4,6 +4,8 @@ const {
   buildSchema
 } = require('graphql');
 
+const quotes = require('./quotes');
+
 const schema = buildSchema(`
 	type Query {
 		quoteOfTheDay: String
@@ -14,9 +16,7 @@ const schema = buildSchema(`
 `);
 
 const root = {
-  quoteOfTheDay: () => {
-    return Math.random() < 0.5 ? 'Take it easy' : 'Salvation lies within';
-  },
+  quoteOfTheDay: quotes.quoteOfTheDay,
   random: () => {
     return Math.random();
   },

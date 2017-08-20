@@ -1,13 +1,14 @@
 {
   "name": "prova-graphql",
   "version": "1.0.0",
-  "description": "prova di graphql in javascript",
+  "description": "testing graphql API in js",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Mauro Scomparin",
+  "author": "Mauro Scomparin <scompo@gmail.com>",
   "license": "MIT",
+  "repository": "https://github.com/scompo/prova-graphql.git",
   "dependencies": {
     "express": "^4.15.4",
     "express-graphql": "^0.6.7",

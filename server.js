@@ -4,7 +4,7 @@ const {
   buildSchema
 } = require('graphql');
 
-const quotes = require('./quotes');
+const quotes = require('./modules/quotes');
 
 const schema = buildSchema(`
 	type Query {

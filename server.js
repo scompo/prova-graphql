@@ -1,6 +1,8 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
-const { buildSchema } = require('graphql');
+const {
+  buildSchema
+} = require('graphql');
 
 const schema = buildSchema(`
 	type Query {
@@ -12,22 +14,25 @@ const schema = buildSchema(`
 `);
 
 const root = {
-	quoteOfTheDay: () => {
-		return Math.random() < 0.5 ? 'Take it easy' : 'Salvation lies within';
-	},
-	random: () => {
-		return Math.random();
-	},
-	rollThreeDice: () => {
-		return [1, 2, 3].map(_ => 1 + Math.floor(Math.random() * 6));
-	},
-	rollDice: ({num, sides}) => {
-		var out = [];
-		for(var i=0; i < num; i++){
-			out.push(1 + Math.floor(Math.random() * (sides || 6)));
-		}
-		return out;
-	}
+  quoteOfTheDay: () => {
+    return Math.random() < 0.5 ? 'Take it easy' : 'Salvation lies within';
+  },
+  random: () => {
+    return Math.random();
+  },
+  rollThreeDice: () => {
+    return [1, 2, 3].map(_ => 1 + Math.floor(Math.random() * 6));
+  },
+  rollDice: ({
+    num,
+    sides
+  }) => {
+    var out = [];
+    for (var i = 0; i < num; i++) {
+      out.push(1 + Math.floor(Math.random() * (sides || 6)));
+    }
+    return out;
+  }
 };
 
 const app = express();

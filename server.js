@@ -21,10 +21,10 @@ const root = {
 	rollThreeDice: () => {
 		return [1, 2, 3].map(_ => 1 + Math.floor(Math.random() * 6));
 	},
-	rollDice: (args) => {
+	rollDice: ({num, sides}) => {
 		var out = [];
-		for(var i=0; i<args.num; i++){
-			out.push(1 + Math.floor(Math.random() * (args.sides || 6)));
+		for(var i=0; i < num; i++){
+			out.push(1 + Math.floor(Math.random() * (sides || 6)));
 		}
 		return out;
 	}

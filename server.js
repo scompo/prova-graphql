@@ -5,7 +5,8 @@ const graphqlHTTP = require('express-graphql');
 const {
   GraphQLSchema,
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLList
 } = require('graphql');
 
 const Sequelize = require('sequelize');
@@ -51,11 +52,27 @@ MioModel.sync({
   return MioModel.create({
     a: 'aaaa',
     b: 'bbbb'
+  });
+}).then(() => {
+  return MioModel.create({
+    a: 'accc',
+    b: 'dddd'
+  })
+}).then(() => {
+  return MioModel.create({
+    a: 'aeee',
+    b: 'ffff'
   })
 });
 
-const mioResolver = (source, args, context) => {
-  return MioModel.findOne().then(m => {
+const allMioTypeResolver = (source, args, context) => {
+  return MioModel.findAll({
+    where: {
+      a: {
+        $like: '%' + args.a + '%'
+      }
+    }
+  }).then(m => {
     return m
   });
 }
@@ -63,9 +80,14 @@ const mioResolver = (source, args, context) => {
 const rootQuery = new GraphQLObjectType({
   name: 'query',
   fields: {
-    mio: {
-      type: MioType,
-      resolve: mioResolver
+    allMio: {
+      type: new GraphQLList(MioType),
+      args: {
+        'a': {
+          type: GraphQLString
+        }
+      },
+      resolve: allMioTypeResolver
     }
   }
 });
